@@ -12,7 +12,7 @@ return {
 				lualine_b = { "branch" },
 				lualine_c = { "lsp_status" },
 
-				lualine_x = { "diagnostics" },
+				lualine_x = { "%S", "diagnostics" },
 				lualine_y = { "location", "progress" },
 				lualine_z = { "encoding", "fileformat", "filetype" },
 			},
