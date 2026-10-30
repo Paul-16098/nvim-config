@@ -1,4 +1,5 @@
 -- Automatically discover and enable all LSP configs in ~/.config/nvim/lsp/
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/
 local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
 
 if vim.fn.isdirectory(lsp_dir) == 1 then
