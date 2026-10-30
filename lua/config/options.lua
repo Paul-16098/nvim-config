@@ -55,3 +55,5 @@ end
 
 -- Set Neovim's statuscolumn option to use our wrapper
 vim.opt.statuscolumn = "%!v:lua.custom_statuscolumn()"
+
+vim.opt.showcmdloc = 'statusline'
