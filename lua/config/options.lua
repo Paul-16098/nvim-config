@@ -36,6 +36,7 @@ vim.opt.spell = false
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_nvim_dir_plugin = 1
 
 vim.opt.scrolloff = 9
 
