@@ -2,7 +2,10 @@ return (function()
 	---@type table
 	local ps = {}
 
-	local dp = { "akinsho/bufferline.nvim" }
+	local dp = {
+		"akinsho/bufferline.nvim",
+		'noir4y/comment-translate.nvim',
+	}
 
 	-- Use ipairs and capture both index and value (or ignore index with _)
 	for _, name in ipairs(dp) do
