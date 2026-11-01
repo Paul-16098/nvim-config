@@ -21,13 +21,19 @@ return {
 	{
 		"folke/snacks.nvim",
 		opts = {
-			-- Disable the explorer picker / tree component
 			explorer = {
 				enabled = false,
 			},
 			indent = {
 				enabled = false,
 			},
+			picker = {
+				sources = {
+					projects = {
+						dev = { "~\\Documents\\git" },
+					},
+				}
+			}
 		},
 	},
 }
