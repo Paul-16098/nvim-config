@@ -88,3 +88,5 @@ end, { desc = "Add Multi-Cursor Above" })
 vim.keymap.set({ "n", "i" }, "<C-M-Down>", function()
 	add_cursor_vertical(1)
 end, { desc = "Add Multi-Cursor Below" })
+
+vim.keymap.del('n', "<leader>us")
