@@ -1,5 +1,6 @@
 return {
 	'noir4y/comment-translate.nvim',
+	event = "LazyFile",
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 	},
