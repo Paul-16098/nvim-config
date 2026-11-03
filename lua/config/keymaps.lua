@@ -90,3 +90,5 @@ vim.keymap.set({ "n", "i" }, "<C-M-Down>", function()
 end, { desc = "Add Multi-Cursor Below" })
 
 vim.keymap.del('n', "<leader>us")
+
+vim.keymap.set("n", "<F2>", "<leader>cr", { remap = true })
