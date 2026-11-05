@@ -16,4 +16,14 @@ return {
       colorscheme = "catppuccin-macchiato",
     },
   },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      custom_highlights = {
+        DiagnosticVirtualLinesHint = deep_extend("DiagnosticVirtualLinesHint", { italic = false })
+      }
+    }
+  }
 }
