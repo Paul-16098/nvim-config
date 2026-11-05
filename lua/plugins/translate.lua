@@ -17,5 +17,11 @@ return {
 		immersive = {
 			enabled = false
 		},
+		keymaps = {
+			hover = false,
+			hover_manual = false,
+			replace = false,
+			toggle = false,
+		}
 	}
 }
