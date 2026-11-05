@@ -36,4 +36,21 @@ return {
 			}
 		},
 	},
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			diagnostics = {
+				severity_sort = true,
+				update_in_insert = true,
+
+				virtual_lines = {
+					current_line = true,
+				},
+				virtual_text = {
+					current_line = false,
+					severity = { min = vim.diagnostic.severity.WARN }
+				},
+			},
+		},
+	},
 }
