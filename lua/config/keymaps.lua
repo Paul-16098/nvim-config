@@ -27,20 +27,14 @@ vim.keymap.set("n", "<C-n>", "<cmd>enew<CR>", { desc = "Create new buffer" })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word backward" })
 vim.keymap.set("i", "<C-Del>", "<C-o>de", { desc = "Delete word forward" })
 
--- vim.keymap.set("n", "<leader>xd", function()
--- Snacks.picker.diagnostics()
--- end, { desc = "Open Diagnostic Picker" })
-
--- File and word navigation (Helix parity)
 vim.keymap.set({ "n", "x" }, "<C-Home>", "gg", { desc = "Go to file start" })
 vim.keymap.set({ "n", "x" }, "<C-End>", "G", { desc = "Go to file end" })
 vim.keymap.set({ "n", "x" }, "<C-Left>", "ge", { desc = "Move previous word end" })
 vim.keymap.set({ "n", "x" }, "<C-Right>", "w", { desc = "Move next word start" })
--- Physical PageUp and PageDown keys
+
 vim.keymap.set({ "n", "x" }, "<PageUp>", "<C-b>", { desc = "Page Up" })
 vim.keymap.set({ "n", "x" }, "<PageDown>", "<C-f>", { desc = "Page Down" })
 
--- Toggle soft wrap with Alt-z (matching Helix A-z)
 vim.keymap.set("n", "<M-z>", function()
 	vim.wo.wrap = not vim.wo.wrap
 	print("Wrap: " .. (vim.wo.wrap and "Enabled" or "Disabled"))
