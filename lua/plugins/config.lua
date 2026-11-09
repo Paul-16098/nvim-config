@@ -52,5 +52,37 @@ return {
 				},
 			},
 		},
+		config = function()
+			for _, config in ipairs(vim.lsp.get_configs()) do
+				local cmd = config.cmd
+				local exe = nil
+				if config.name:match("^(gitlab_duo)$") then
+					goto continue
+				end
+				-- . 根據 cmd 的型別安全地解析出執行檔名稱
+				if type(cmd) == "table" then
+					exe = cmd[1]
+				elseif type(cmd) == "function" and config.name:match("^()$") then
+					-- 嘗試調用函式取得動態回傳的指令結構
+					local ok, res = pcall(cmd)
+					if ok and type(res) == "table" then
+						exe = res[1]
+					elseif ok and type(res) == "string" then
+						exe = res
+					end
+				elseif type(cmd) == "string" then
+					exe = cmd
+				else
+					print(config.name .. ": cmd type=" .. type(cmd) .. ";" .. vim.inspect(cmd))
+				end
+
+				-- 2. 驗證執行檔是否存在於系統 PATH 中
+				if exe and type(exe) == "string" and vim.fn.executable(exe) == 1 then
+					print("auto-enabling: " .. config.name .. " (via " .. exe .. ")")
+					vim.lsp.enable(config.name)
+				end
+				::continue::
+			end
+		end
 	},
 }
