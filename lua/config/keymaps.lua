@@ -52,36 +52,10 @@ vim.keymap.set("v", "<A-up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<
 vim.keymap.set("i", "<A-down>", "<Esc><cmd>m .+1<CR>==gi", { desc = "Move Line Down" })
 vim.keymap.set("i", "<A-up>", "<Esc><cmd>m .-2<CR>==gi", { desc = "Move Line Up" })
 
--- lua/config/keymaps.lua
-local function add_cursor_vertical(direction)
-	local mc_ns = vim.api.nvim_create_namespace("nvim.multicursor")
-	local win = vim.api.nvim_get_current_win()
-	local cursor = vim.api.nvim_win_get_cursor(win)
-	local row, col = cursor[1] - 1, cursor[2] -- Convert to 0-indexed row for extmarks
-
-	-- Ensure the primary cursor is registered in the native multi-cursor session
-	vim.api.nvim_buf_set_extmark(0, mc_ns, row, col, {})
-
-	local target_row = row + direction
-	local line_count = vim.api.nvim_buf_line_count(0)
-
-	if target_row >= 0 and target_row < line_count then
-		-- Clamp column to the target line's length (matching VS Code behavior)
-		local target_line = vim.api.nvim_buf_get_lines(0, target_row, target_row + 1, false)[1] or ""
-		local target_col = math.min(col, #target_line)
-
-		vim.api.nvim_buf_set_extmark(0, mc_ns, target_row, target_col, {})
-	end
-end
-
 -- Bind Ctrl+Alt+Up / Ctrl+Alt+Down (Neovim uses <C-M-...> for Control + Alt)
-vim.keymap.set({ "n", "i" }, "<C-M-Up>", function()
-	add_cursor_vertical(-1)
-end, { desc = "Add Multi-Cursor Above" })
+vim.keymap.set({ "n", "i" }, "<C-M-Up>", "Q<up>", { desc = "Add Multi-Cursor Above" })
 
-vim.keymap.set({ "n", "i" }, "<C-M-Down>", function()
-	add_cursor_vertical(1)
-end, { desc = "Add Multi-Cursor Below" })
+vim.keymap.set({ "n", "i" }, "<C-M-Down>", "Q<Down>", { desc = "Add Multi-Cursor Below" })
 
 vim.keymap.del('n', "<leader>us")
 
