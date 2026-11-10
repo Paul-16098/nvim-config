@@ -30,6 +30,7 @@ return {
 			picker = {
 				sources = {
 					projects = {
+						patterns = { ".git", ".venv", ".github", ".gitignore", "pyproject.toml" },
 						dev = { "~\\Documents\\git" },
 					},
 				}
