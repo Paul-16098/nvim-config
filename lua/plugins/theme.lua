@@ -25,6 +25,7 @@ return {
         DiagnosticVirtualLinesHint = deep_extend("DiagnosticVirtualLinesHint", { italic = false }),
         DiagnosticVirtualLinesWarn = deep_extend("DiagnosticVirtualLinesWarn", { italic = false }),
         DiagnosticVirtualLinesError = deep_extend("DiagnosticVirtualLinesError", { italic = false }),
+        DiagnosticVirtualLinesInfo = deep_extend("DiagnosticVirtualLinesInfo", { italic = false })
       }
     }
   }
