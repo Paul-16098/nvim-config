@@ -1,3 +1,18 @@
+local excluded_name = {
+	gitlab_duo = true,
+	rust_analyzer = true,
+}
+local excluded_binaries = {
+	npm = true,
+	dotnet = true,
+	npx = true,
+	python = true,
+	java = true,
+	node = true,
+	perl = true,
+}
+
+
 vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyLoad",
 	callback = function(event)
@@ -7,6 +22,7 @@ vim.api.nvim_create_autocmd("User", {
 				local configs = vim.lsp.get_configs()
 				local i = 1
 				local batch_size = 10 -- 每批次處理 10 個伺服器
+				local log = vim.log.new({ name = "auto-enable-lsp", level = vim.log.levels.INFO })
 
 				local function process_batch()
 					local end_idx = math.min(i + batch_size - 1, #configs)
@@ -15,10 +31,10 @@ vim.api.nvim_create_autocmd("User", {
 						local cmd = config.cmd
 						local exe = nil
 
-						if not config.name:match("^(gitlab_duo)$") then
+						if not excluded_name[config.name] then
 							if type(cmd) == "table" then
 								exe = cmd[1]
-							elseif type(cmd) == "function" then
+							elseif type(cmd) == "function" and false then
 								local ok, res = pcall(cmd)
 								if ok and type(res) == "table" then
 									exe = res[1]
@@ -29,11 +45,18 @@ vim.api.nvim_create_autocmd("User", {
 								exe = cmd
 							end
 
-							if exe and not exe:match("^(npm|dotnet|npx|python)$") then
-								if type(exe) == "string" and vim.fn.executable(exe) == 1 then
-									vim.lsp.enable(config.name)
+							if exe then
+								if not excluded_binaries[exe] then
+									if type(exe) == "string" and vim.fn.executable(exe) == 1 then
+										log.info(config.name, " via " .. vim.inspect(config.cmd))
+										vim.lsp.enable(config.name)
+									end
+								else
+									log.info("skip " .. config.name .. " cmd=" .. vim.inspect(config.cmd))
 								end
 							end
+						else
+							log.info(config.name .. " skip: in excluded name")
 						end
 					end
 
