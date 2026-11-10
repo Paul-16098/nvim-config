@@ -1,0 +1,6 @@
+words = [
+    "autocmd",
+    "autocmds",
+    "lazyvim",
+]
+ignore_paths = ["lua/config/options.lua"]
