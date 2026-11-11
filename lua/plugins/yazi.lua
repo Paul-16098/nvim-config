@@ -15,7 +15,8 @@ return {
 			desc = "Open yazi at the current file",
 		},
 	},
-	---@type YaziConfig | {}
+	---@module "yazi"
+	---@type YaziConfig
 	opts = {
 		open_for_directories = true,
 	},

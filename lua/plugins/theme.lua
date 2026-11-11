@@ -9,6 +9,7 @@ local function deep_extend(name, opts)
 end
 
 
+---@type LazySpec
 return {
   {
     "LazyVim/LazyVim",
@@ -20,7 +21,10 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
+    ---@module "catppuccin"
+    ---@type CatppuccinOptions
     opts = {
+      ---@type {[string]: vim.api.keyset.get_hl_info}
       custom_highlights = {
         DiagnosticVirtualLinesHint = deep_extend("DiagnosticVirtualLinesHint", { italic = false }),
         DiagnosticVirtualLinesWarn = deep_extend("DiagnosticVirtualLinesWarn", { italic = false }),

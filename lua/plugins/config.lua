@@ -1,6 +1,9 @@
+---@type LazySpec
 return {
 	{
 		"akinsho/bufferline.nvim",
+		---@module "bufferline"
+		---@type bufferline.UserConfig
 		opts = { options = { always_show_bufferline = true } },
 	},
 	-- { "stevearc/conform.nvim", opts = {} },
@@ -20,6 +23,8 @@ return {
 	},
 	{
 		"folke/snacks.nvim",
+		---@module "snacks"
+		---@type snacks.Config
 		opts = {
 			explorer = {
 				enabled = false,
@@ -40,6 +45,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
+			---@type vim.diagnostic.Opts
 			diagnostics = {
 				severity_sort = true,
 				update_in_insert = true,

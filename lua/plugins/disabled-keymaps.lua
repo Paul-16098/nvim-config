@@ -1,3 +1,4 @@
+---@type LazySpec
 return (function()
 	---@type table
 	local ps = {}
