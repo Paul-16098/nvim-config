@@ -1,8 +1,10 @@
 -- https://github.com/folke/snacks.nvim/blob/main/docs/debug.md
 _G.dd = function(...)
+	---@diagnostic disable-next-line: undefined-global
 	Snacks.debug.inspect(...)
 end
 _G.bt = function()
+	---@diagnostic disable-next-line: undefined-global
 	Snacks.debug.backtrace()
 end
 if vim.fn.has("nvim-0.11") == 1 then
