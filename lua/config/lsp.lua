@@ -1,16 +1,3 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/
 
--- vim.lsp.enable({
--- 	"ast_grep",
--- 	"tsc",
--- 	"yamlls",
--- 	"ty",
--- 	"tombi",
--- 	"rust_analyzer",
--- 	"ruff",
--- 	"nushell",
--- 	"codebook",
--- 	"html",
--- 	"just",
--- 	"nu-lint"
--- })
+require("config.auto_enabled_lsp")

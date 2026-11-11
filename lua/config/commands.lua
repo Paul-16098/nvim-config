@@ -17,6 +17,7 @@ vim.cmd([[
   cnoreabbrev <expr> bdo (getcmdtype() == ':' && getcmdline() == 'bdo') ? 'Bdo' : 'bdo'
 ]])
 
+require("config.commands.GenerateStaticLsp")
 vim.api.nvim_create_user_command("AddLicense", function()
 	vim.system({ "gh", "api", "--paginate", "/licenses" }, { text = true }, function(out)
 		if out.code ~= 0 or not out.stdout then

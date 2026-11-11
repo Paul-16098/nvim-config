@@ -6,3 +6,4 @@ debug
 foo.*
 *.log
 data
+/lua/config/auto_enabled_lsp.lua
