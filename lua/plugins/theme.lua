@@ -8,6 +8,14 @@ local function deep_extend(name, ...)
   ))
 end
 
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyLoad",
+  callback = function(event)
+    if event.data == "snacks.nvim" then
+      set_hl("SnacksInputBorder", deep_extend("SnacksInputBorder", { italic = false }))
+    end
+  end
+})
 
 ---@type LazySpec
 return {
