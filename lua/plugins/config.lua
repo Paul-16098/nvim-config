@@ -13,7 +13,17 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch" },
-				lualine_c = { "lsp_status" },
+				lualine_c = { {
+					"overseer",
+					label = "task:",
+					fmt = function(str)
+						if str == "task:" then
+							return ""
+						else
+							return str
+						end
+					end
+				}, "lsp_status" },
 
 				lualine_x = { "%S", "diagnostics" },
 				lualine_y = { "location", "progress" },
