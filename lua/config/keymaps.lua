@@ -18,7 +18,8 @@ vim.keymap.set("n", "<C-w>", "<cmd>:bd<cr>", { desc = "Close Window" })
 vim.keymap.del({ "n", "x" }, "j")
 vim.keymap.del({ "n", "x" }, "k")
 
-vim.keymap.set({ "n", "x" }, "<C-/>", "gcc", { remap = true, desc = "Toggle comment line" })
+vim.keymap.set("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("x", "<C-/>", "gc", { remap = true, desc = "Toggle comment" })
 
 vim.keymap.set("n", "k", vim.lsp.buf.hover, { desc = "Hover" })
 
