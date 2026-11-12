@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 vim.keymap.set("n", "<S-A-f>", function()
+	---@diagnostic disable-next-line: undefined-global
 	LazyVim.format({ force = true })
 end, { desc = "Format" })
 
