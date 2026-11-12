@@ -21,12 +21,15 @@ return {
     ---@module "catppuccin"
     ---@type CatppuccinOptions
     opts = {
-      ---@type {[string]: vim.api.keyset.get_hl_info}
-      custom_highlights = {
-        DiagnosticVirtualLinesHint = deep_extend("DiagnosticVirtualLinesHint", { italic = false }),
-        DiagnosticVirtualLinesWarn = deep_extend("DiagnosticVirtualLinesWarn", { italic = false }),
-        DiagnosticVirtualLinesError = deep_extend("DiagnosticVirtualLinesError", { italic = false }),
-        DiagnosticVirtualLinesInfo = deep_extend("DiagnosticVirtualLinesInfo", { italic = false })
+      highlight_overrides = {
+        all = function()
+          return {
+            DiagnosticVirtualLinesHint = deep_extend("DiagnosticVirtualLinesHint", { italic = false }),
+            DiagnosticVirtualLinesWarn = deep_extend("DiagnosticVirtualLinesWarn", { italic = false }),
+            DiagnosticVirtualLinesError = deep_extend("DiagnosticVirtualLinesError", { italic = false }),
+            DiagnosticVirtualLinesInfo = deep_extend("DiagnosticVirtualLinesInfo", { italic = false }),
+          }
+        end,
       }
     }
   }
