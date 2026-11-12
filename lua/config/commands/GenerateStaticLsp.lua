@@ -1,18 +1,18 @@
-vim.api.nvim_create_user_command("GenerateStaticLsp", function()
-	local excluded_name = {
-		gitlab_duo = true,
-		rust_analyzer = true,
-	}
-	local excluded_binaries = {
-		npm = true,
-		dotnet = true,
-		npx = true,
-		python = true,
-		java = true,
-		node = true,
-		perl = true,
-	}
+local excluded_name = {
+	gitlab_duo = true,
+	rust_analyzer = true,
+}
+local excluded_binaries = {
+	npm = true,
+	dotnet = true,
+	npx = true,
+	python = true,
+	java = true,
+	node = true,
+	perl = true,
+}
 
+vim.api.nvim_create_user_command("GenerateStaticLsp", function()
 	local configs = vim.lsp.get_configs()
 
 	---@type table
@@ -29,11 +29,24 @@ vim.api.nvim_create_user_command("GenerateStaticLsp", function()
 				exe = cmd[1]
 			elseif type(cmd) == "string" then
 				exe = cmd
+			elseif type(cmd) == "nil" then
+			else
+				print(config.name .. ": not support cmd is ", vim.inspect(cmd))
 			end
 
-			if exe and not excluded_binaries[exe] and vim.fn.executable(exe) == 1 then
-				table.insert(lines, string.format('vim.lsp.enable(%q)', config.name))
+			if exe then
+				if not excluded_binaries[exe] then
+					if vim.fn.executable(exe) == 1 then
+						table.insert(lines,
+							string.format('vim.lsp.enable(%q) -- %s: %s', config.name, vim.inspect(cmd),
+								vim.fn.exepath(exe)))
+					end
+				else
+					print(config.name .. ": ignore by bin(" .. exe .. ")")
+				end
 			end
+		else
+			print(config.name .. ": ignore by name")
 		end
 	end
 
@@ -50,4 +63,4 @@ vim.api.nvim_create_user_command("GenerateStaticLsp", function()
 	file:close()
 
 	vim.notify("Successfully generated static LSP config with " .. (#lines - 3) .. " servers!", vim.log.levels.INFO)
-end, {})
+end)
