@@ -59,3 +59,5 @@ vim.opt.statuscolumn = "%!v:lua.custom_statuscolumn()"
 vim.opt.showcmdloc = 'statusline'
 
 vim.opt.inccommand = "split"
+
+vim.o.exrc = true
