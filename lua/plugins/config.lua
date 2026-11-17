@@ -70,4 +70,12 @@ return {
 			},
 		},
 	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			install = {
+				compilers = { "cl" },
+			},
+		}
+	}
 }
