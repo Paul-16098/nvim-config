@@ -1,5 +1,8 @@
 -- lua/config/keymaps.lua
 
+for _, file in ipairs(vim.fn.globpath(vim.fn.stdpath("config") .. "/lua/config/commands", "*.lua", false, true)) do
+	require("config.commands." .. vim.fn.fnamemodify(file, ":t:r"))
+end
 -- Define :Bdo to keep the current buffer and wipe out the rest
 vim.api.nvim_create_user_command("Bdo", function()
 	local current = vim.api.nvim_get_current_buf()
@@ -17,5 +20,3 @@ vim.cmd([[
   cnoreabbrev <expr> bdo (getcmdtype() == ':' && getcmdline() == 'bdo') ? 'Bdo' : 'bdo'
 ]])
 
-require("config.commands.GenerateStaticLsp")
-require("config.commands.AddLicense")
