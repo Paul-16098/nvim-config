@@ -77,5 +77,39 @@ return {
 				compilers = { "cl" },
 			},
 		}
+	},
+	{
+		"stevearc/overseer.nvim",
+		---@module "overseer"
+		---@type overseer.SetupOpts
+		opts = {
+			actions = {
+				save = {
+					desc = "save task as template (Lua)",
+					run = function(task)
+						local b = vim.api.nvim_create_buf(true, false)
+						vim.bo[b].filetype = "lua"
+
+						local serialized = task:serialize()
+
+						---@diagnostic disable-next-line: invisible
+						serialized.from_template = nil
+
+						local serialized_str = vim.inspect(serialized)
+						local code = table.concat({
+							"require('overseer').register_template({",
+							"  name = " .. vim.inspect(task.name) .. ",",
+							"  desc = " .. vim.inspect("Auto-saved from task: " .. task.name) .. ",",
+							"  builder = function(_)",
+							"    return " .. serialized_str,
+							"  end,",
+							"})",
+						}, "\n")
+
+						vim.api.nvim_buf_set_text(b, 0, 0, 0, 0, vim.split(code, "\n", { plain = true }))
+					end,
+				}
+			}
+		}
 	}
 }
