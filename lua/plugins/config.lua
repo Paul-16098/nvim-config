@@ -77,5 +77,23 @@ return {
 				compilers = { "cl" },
 			},
 		}
+	},
+	{
+		"stevearc/overseer.nvim",
+		---@module "overseer"
+		---@type overseer.SetupOpts
+		opts = {
+			actions = {
+				save = {
+					desc = "save task as lua",
+					run = function(task)
+						local b = vim.api.nvim_create_buf(true, true)
+						vim.bo[b].filetype = "lua"
+						local t = 'require("overseer").new_task(' .. vim.inspect(task:serialize()) .. ')'
+						vim.api.nvim_buf_set_text(b, 0, 0, 0, 0, vim.split(t, "\n", { plain = true }))
+					end
+				}
+			}
+		}
 	}
 }
