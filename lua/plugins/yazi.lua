@@ -1,18 +1,19 @@
 ---@type LazySpec
 return {
 	"mikavilpas/yazi.nvim",
-	version = "*",
-	lazy = false,
-	dependencies = {
-		{ "nvim-lua/plenary.nvim", lazy = true },
-	},
 	keys = {
 		{
 			"<leader>e",
-			mode = { "n", "v" },
 			"<cmd>Yazi<cr>",
+			mode = { "n", "v" },
 			desc = "Open yazi at the current file",
 		},
+		{
+			"<leader>E",
+			"<cmd>Yazi cwd<cr>",
+			mode = { "n", "v" },
+			desc = "Open yazi at cwd",
+		}
 	},
 	---@module "yazi"
 	---@type YaziConfig

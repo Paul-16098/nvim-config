@@ -51,6 +51,9 @@ return {
 				}
 			}
 		},
+		keys = {
+			{ "<leader>e", false }
+		}
 	},
 	{
 		"neovim/nvim-lspconfig",
