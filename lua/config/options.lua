@@ -11,6 +11,10 @@ vim.opt.shellxquote = ""
 vim.opt.shellquote = ""
 vim.opt.shellcmdflag = "-c"
 
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+	vim.g.clipboard = 'win32yank'
+end
+
 vim.g.snacks_animate = false
 
 vim.opt.list = true
