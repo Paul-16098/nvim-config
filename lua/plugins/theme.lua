@@ -32,6 +32,7 @@ return {
     ---@module "catppuccin"
     ---@type CatppuccinOptions
     opts = {
+      compile = true,
       highlight_overrides = {
         all = function()
           return {
