@@ -23,3 +23,6 @@ vim.api.nvim_create_user_command("Cccc", function(args)
 	vim.fn.setqflist({}, "r", { title = "cccc", items = qf })
 	vim.cmd("copen")
 end, { nargs = "*", range = false, desc = "cccc in quickfix" })
+
+vim.keymap.set("n", "<leader>xc", "<cmd>Cccc .<cr>", { desc = "cccc quickfix" })
+vim.keymap.set("n", "<leader>xC", "<cmd>Cccc<cr>", { desc = "cccc quickfix (Trouble)" })
